@@ -9,10 +9,6 @@
 
         <h1>你好,{{ request.session.user_name }}！欢迎回来！</h1>
         <div id="homepage_list" style="float:left;">
-            <a href="/homepage/cet_4/" class="btn btn-default pull-left">
-                <p>英语四级报名</p>
-                <p>Enrollment for CET-4</p>
-            </a>
             <a href="/homepage/cet_6/" class="btn btn-default pull-left">
                 <p>英语六级报名</p>
                 <p>Enrollment for CET-6</p>
@@ -24,6 +20,10 @@
             <a href="/homepage/query_results/" class="btn btn-default pull-left">
                 <p>报考信息查询</p>
                 <p>Entrance Examination Information Query</p>
+            </a>
+            <a href="/homepage/online_test/" class="btn btn-default pull-left">
+                <p>六级在线考试</p>
+                <p>CET-6 Online Exam</p>
             </a>
         </div>
     {% else %}

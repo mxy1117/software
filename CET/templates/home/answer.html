@@ -1,0 +1,71 @@
+{% extends 'login/base.html' %}
+{% block title %}考试界面{% endblock %}
+{% block content %}
+
+<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>考试界面</title>
+</head>
+<body onload="examTime()">
+	<div>
+		<span>满分100分</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>单选题40分</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>多选题60分</span><br />
+		<span>考试时间:&nbsp;&nbsp;2分钟</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>计时:</span><span
+			id="time" style="color: red"></span>
+		<form action="ExamServlet" method="post" name="exam">
+			<p>一. 单选题(总分40分,答错不得分)</p>
+			1.zzzzz<br /> <input type="radio" name="one" value="A" />A z <br />
+			<input type="radio" name="one" value="B" />B x <br /> <input
+				type="radio" name="one" value="C" />C c <br /> <input type="radio"
+				name="one" value="D" />D v <br /> 2.网络营销的发展历经几个阶段?<br /> <input
+				type="radio" name="two" value="A" />A 2个 <br /> <input
+				type="radio" name="two" value="B" />B 3个 <br /> <input
+				type="radio" name="two" value="C" />C 5个 <br /> <input
+				type="radio" name="two" value="D" />D 6个 <br />
+			<p>二. 多选题(总分40分,答错不得分)</p>
+			1.Internet提供的基本服务有那些?<br /> <input type="checkbox" name="three"
+				value="A" />A E-mail <br /> <input type="checkbox" name="three"
+				value="B" />B FTP <br /> <input type="checkbox" name="three"
+				value="C" />C Telnet <br /> <input type="checkbox" name="three"
+				value="D" />D WWW <br />
+            <!--  文本域-->
+            <p>三. 写作题(总分20分)</p>
+            <p>请写出最令你感动的一个人或事件</p>
+            <p>
+                <textarea name="textarea" cols="150" rows="20"></textarea>
+            </p>
+            <!--  文件域-->
+            <p>
+				<input type="submit" value="交卷" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+					id="a" href="/index/">退出当前系统</a>
+			</p>
+		</form>
+	</div>
+</body>
+<script>
+	var time = 2 * 60;
+	function examTime() {
+		//得到class为time的span标签
+		var spanTime = document.getElementById("time");
+		--time;
+		//获取小时
+		var hour = parseInt(time / 3600);
+		//获取分钟
+		var min = parseInt(time % 3600 / 60);
+		//获取秒
+		var second = time - hour * 3600 - min * 60;
+		//将这个标签设置为time
+		spanTime.innerHTML = min + "分钟" + second + "秒";
+		//判断时间到了就提交
+		if (time == 0) {
+			alert("考试结束")
+			document.exam.submit();
+		}
+		setTimeout("examTime()", 1000);
+	};
+</script>
+</html>
+
+{% endblock %}

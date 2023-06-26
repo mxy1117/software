@@ -8,6 +8,7 @@ class user_entry(forms.Form):
     user_id = forms.CharField(label="身份证号", max_length=18, widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(label="邮箱地址", widget=forms.EmailInput(attrs={'class': 'form-control'}))
     exam_point = forms.CharField(label="考点", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    exam_time = forms.CharField(label="考试时间", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
 class user_datas(forms.Form):
     email = forms.EmailField(label="邮箱地址", widget=forms.EmailInput(attrs={'class': 'form-control'}))

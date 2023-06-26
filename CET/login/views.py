@@ -4,15 +4,28 @@ from .forms import UserForm,RegisterForm
 from home.models import user_data
 # Create your views here.
 
+
 def check(request):
     pass
     return render(request, 'login/hello.html')
+
 
 def index(request):
     pass
     return render(request, 'login/index.html')
 
-#加入sesson
+
+def index_teacher(request):
+    pass
+    return render(request, 'login/index_teacher.html')
+
+
+def index_admin(request):
+    pass
+    return render(request, 'login/index_admin.html')
+
+
+# 加入session
 def login(request):
     #不允许重复登录
     if request.session.get('is_login', None):
@@ -27,11 +40,19 @@ def login(request):
             try:
                 user = models.User.objects.get(name=username)
                 if user.password == password:
-                    #往session字典内写入用户状态和数据
+                    # 往session字典内写入用户状态和数据
                     request.session['is_login'] = True
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.name
-                    return redirect('/index/')
+                    if user.type == "student":
+                        print("---------进入学生界面---------")
+                        return redirect('/index/')
+                    elif user.type == "teacher":
+                        print("---------进入教师界面---------")
+                        return redirect('/index_teacher/')
+                    else:
+                        print("---------进入管理员界面---------")
+                        return redirect('/index_admin/')
                 else:
                     message = "密码不正确！"
             except:
@@ -86,11 +107,11 @@ def register(request):
                 # (1062, "Duplicate entry '' for key 'user_name'")
                 new_user_data = user_data.objects.create()
                 new_user_data.user_name = username
-                #new_user_data.user_type = type
+                # new_user_data.user_type = type
                 new_user_data.user_true_name = '无'
                 new_user_data.user_id = '无'
                 new_user_data.user_school = '无'
-                # new_user_data.user_f_score = 425
+                new_user_data.user_f_score = '未通过'
                 # new_user_data.user_s_score = 0
                 new_user_data.save()
 
@@ -100,6 +121,7 @@ def register(request):
                 new_user.password = password1
                 new_user.email = email
                 new_user.sex = sex
+                new_user.type = type
                 new_user.save()
 
                 return redirect('/login/')  # 自动跳转到登录页面

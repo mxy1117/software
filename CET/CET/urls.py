@@ -23,6 +23,8 @@ urlpatterns = [
 
     #登录注册
     path('index/', views.index),
+    path('index_teacher/', views.index_teacher),
+    path('index_admin/', views.index_admin),
     path('check/', views.check),
     path('login/', views.login),
     path('register/', views.register),
