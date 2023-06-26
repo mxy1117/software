@@ -65,3 +65,22 @@ class user_data(models.Model):
         verbose_name_plural = '用户信息表'
 
 
+class single_choose(models.Model):
+    type = (
+        ('listening', '听力'),
+        ('reading', '阅读'),
+    )
+    test_id = models.IntegerField(verbose_name="试卷编号", max_length=11, default=0)
+    qu_type = models.CharField(verbose_name="题目类型", max_length=32, choices=type, default="听力")
+    qu = models.CharField(max_length=255, null=True)
+    A = models.CharField(max_length=255, default=" ")
+    B = models.CharField(max_length=255, default=" ")
+    C = models.CharField(max_length=255, default=" ")
+    D = models.CharField(max_length=255, default=" ")
+    ans = models.CharField(max_length=2, default="A")
+
+
+class paper_text(models.Model):
+    reading = models.TextField(verbose_name="阅读文章")
+    writing = models.TextField(verbose_name="作文题目")
+    translation = models.TextField(verbose_name="翻译文本")

@@ -12,29 +12,74 @@
 <body onload="examTime()">
 	<div>
 		<span>满分100分</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>单选题40分</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>多选题60分</span><br />
-		<span>考试时间:&nbsp;&nbsp;2分钟</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>计时:</span><span
+		<span>考试时间:&nbsp;&nbsp;60分钟</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>计时:</span><span
 			id="time" style="color: red"></span>
 		<form action="ExamServlet" method="post" name="exam">
-			<p>一. 单选题(总分40分,答错不得分)</p>
-			1.zzzzz<br /> <input type="radio" name="one" value="A" />A z <br />
-			<input type="radio" name="one" value="B" />B x <br /> <input
-				type="radio" name="one" value="C" />C c <br /> <input type="radio"
-				name="one" value="D" />D v <br /> 2.网络营销的发展历经几个阶段?<br /> <input
-				type="radio" name="two" value="A" />A 2个 <br /> <input
-				type="radio" name="two" value="B" />B 3个 <br /> <input
-				type="radio" name="two" value="C" />C 5个 <br /> <input
-				type="radio" name="two" value="D" />D 6个 <br />
-			<p>二. 多选题(总分40分,答错不得分)</p>
-			1.Internet提供的基本服务有那些?<br /> <input type="checkbox" name="three"
-				value="A" />A E-mail <br /> <input type="checkbox" name="three"
-				value="B" />B FTP <br /> <input type="checkbox" name="three"
-				value="C" />C Telnet <br /> <input type="checkbox" name="three"
-				value="D" />D WWW <br />
-            <!--  文本域-->
-            <p>三. 写作题(总分20分)</p>
-            <p>请写出最令你感动的一个人或事件</p>
-            <p>
-                <textarea name="textarea" cols="150" rows="20"></textarea>
+			<div class="form-group">
+                <h2 class="col-md-4 text-left"><span>Part I</span></h2>
+                <h2 class="col-md-4 text-center"><span>Writing</span></h2>
+				<h2 class="col-md-4 text-right"><span>(30 minutes)</span></h2>
+            </div>
+			<br/>
+			<p>{{ paper.writing }}</p>
+			<br />
+			<p>
+                &emsp;&emsp;<textarea name="textarea" cols="180" rows="20"></textarea>
+            </p>
+			<br />
+			<div class="form-group">
+                <h2 class="col-md-4 text-left"><span>Part II</span></h2>
+                <h2 class="col-md-4 text-center"><span>Listening Comprehension</span></h2>
+				<h2 class="col-md-4 text-right"><span>(30 minutes)</span></h2>
+            </div>
+			<p><strong>Directions:</strong> In this section, you will hear two long conversations. At the end of each conversation,
+				you will hear four questions. Both the conversation and the questions will be spoken only once.
+				After you hear a question, you must choose the best answer from the four choices marked A), B), C) and D).
+				Then mark the corresponding letter <strong>on Answer Sheet I</strong> with a single line through the centre.</p>
+			<br />
+			{% for i in listenings %}
+			<strong>Question {{i.id}}:</strong> <br /> <input
+				type="radio" name="one" value="A" />&ensp;A&emsp;{{i.A}} <br /> <input
+				type="radio" name="one" value="B" />&ensp;B&emsp;{{i.B}} <br /> <input
+				type="radio" name="one" value="C" />&ensp;C&emsp;{{i.C}} <br /> <input
+				type="radio" name="one" value="D" />&ensp;D&emsp;{{i.D}} <br />
+			<br />
+			{% endfor %}
+
+			<div class="form-group">
+                <h2 class="col-md-4 text-left"><span>Part III</span></h2>
+                <h2 class="col-md-4 text-center"><span>Reading Comprehension</span></h2>
+				<h2 class="col-md-4 text-right"><span>(40 minutes)</span></h2>
+            </div>
+			<p><strong>Directions:</strong>There are 2 passages in this section. Each passage is followed by some questions or
+				unfinished statements. For each of them there are four choices marked A), B), C) and D). You should decide on
+				the best choice and mark the corresponding letter <strong>on Answer Sheet 2</strong> with a single line through
+				the centre.</p>
+			<br />
+			<p>{{ paper.reading }}</p>
+			<br/>
+			{% for i in readings %}
+			<strong>Question {{i.id}}:</strong> {{i.qu}}<br /> <input
+				type="radio" name="one" value="A" />&ensp;A&emsp;{{i.A}} <br /> <input
+				type="radio" name="one" value="B" />&ensp;B&emsp;{{i.B}} <br /> <input
+				type="radio" name="one" value="C" />&ensp;C&emsp;{{i.C}} <br /> <input
+				type="radio" name="one" value="D" />&ensp;D&emsp;{{i.D}} <br />
+			<br />
+			{% endfor %}
+
+			<div class="form-group">
+                <h2 class="col-md-4 text-left"><span>Part IV</span></h2>
+                <h2 class="col-md-4 text-center"><span>Translation</span></h2>
+				<h2 class="col-md-4 text-right"><span>(30 minutes)</span></h2>
+            </div>
+			<br />
+			<p><strong>Directions:</strong> Directions: For this part, you are allowed 30 minutes to translate a
+				passage from Chinese into English. You should write your answer <strong>on Answer Sheet 2</strong>.</p>
+			<br />
+			<p>{{ paper.translation }}</p>
+			<br />
+			<p>
+                &emsp;&emsp;<textarea name="textarea" cols="180" rows="20"></textarea>
             </p>
             <!--  文件域-->
             <p>
@@ -45,7 +90,7 @@
 	</div>
 </body>
 <script>
-	var time = 2 * 60;
+	var time = 120 * 60;
 	function examTime() {
 		//得到class为time的span标签
 		var spanTime = document.getElementById("time");

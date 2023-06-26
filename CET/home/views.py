@@ -32,8 +32,12 @@ def online_test(request):
 
 
 def answer(request):
-    pass
-    return render(request, 'home/answer.html')
+    username = request.session.get('user_name', None)
+    user = models.user_data.objects.get(user_name=username)  # 获取用户个人信息
+    paper = models.paper_text.objects.get(id=1)
+    listenings = models.single_choose.objects.filter(qu_type="listening")
+    readings = models.single_choose.objects.filter(qu_type="reading")
+    return render(request, 'home/answer.html', {"paper": paper, "listenings": listenings, "readings": readings})
 
 # 我的信息
 def mydate(request):
