@@ -32,37 +32,37 @@
         <div class="collapse navbar-collapse" id="my-nav" style="background-color: rgb(171, 80, 147);">
           <ul class="nav navbar-nav">
             {% if request.session.user_type == 'student' %}
-              <li style="padding: 5px 0 0 120px;" ><a href="/index/"><font size="4" color="black"><b>主页</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/introduction/" target="_parent"><font size="4" color="black"><b>考试简介</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/notice/" target="_parent"><font size="4" color="black"><b>考生须知</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/registerflow/" target="_parent"><font size="4" color="black"><b>报名流程</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/commonproblem/" target="_parent"><font size="4" color="black"><b>常见问题</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/grades/" target="_parent"><font size="4" color="black"><b>成绩报告单</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/testdate/" target="_parent"><font size="4" color="black"><b>考试时间</b></font></a></li>
+              <li style="padding: 5px 0 0 120px;" ><a href="/index/"><font size="4" color="white"><b>主页</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/introduction/" target="_parent"><font size="4" color="white"><b>考试简介</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/notice/" target="_parent"><font size="4" color="white"><b>考生须知</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/registerflow/" target="_parent"><font size="4" color="white"><b>报名流程</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/commonproblem/" target="_parent"><font size="4" color="white"><b>常见问题</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/grades/" target="_parent"><font size="4" color="white"><b>成绩报告单</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/testdate/" target="_parent"><font size="4" color="white"><b>考试时间</b></font></a></li>
             {% elif request.session.user_type == 'teacher' %}
-              <li style="padding: 5px 0 0 120px;" ><a href="/index_teacher/"><font size="4" color="black"><b>主页</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/introduction/" target="_parent"><font size="4" color="black"><b>考试简介</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/notice/" target="_parent"><font size="4" color="black"><b>考生须知</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/registerflow/" target="_parent"><font size="4" color="black"><b>报名流程</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/commonproblem/" target="_parent"><font size="4" color="black"><b>常见问题</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/grades/" target="_parent"><font size="4" color="black"><b>成绩报告单</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/testdate/" target="_parent"><font size="4" color="black"><b>考试时间</b></font></a></li>
+              <li style="padding: 5px 0 0 120px;" ><a href="/index_teacher/"><font size="4" color="white"><b>主页</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/introduction/" target="_parent"><font size="4" color="white"><b>考试简介</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/notice/" target="_parent"><font size="4" color="white"><b>考生须知</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/registerflow/" target="_parent"><font size="4" color="white"><b>报名流程</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/commonproblem/" target="_parent"><font size="4" color="white"><b>常见问题</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/grades/" target="_parent"><font size="4" color="white"><b>成绩报告单</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/testdate/" target="_parent"><font size="4" color="white"><b>考试时间</b></font></a></li>
             {% elif request.session.user_type == 'manager' %}
-              <li style="padding: 5px 0 0 120px;" ><a href="/index_admin/"><font size="4" color="black"><b>主页</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/introduction/" target="_parent"><font size="4" color="black"><b>考试简介</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/notice/" target="_parent"><font size="4" color="black"><b>考生须知</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/registerflow/" target="_parent"><font size="4" color="black"><b>报名流程</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/commonproblem/" target="_parent"><font size="4" color="black"><b>常见问题</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/grades/" target="_parent"><font size="4" color="black"><b>成绩报告单</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/testdate/" target="_parent"><font size="4" color="black"><b>考试时间</b></font></a></li>
+              <li style="padding: 5px 0 0 120px;" ><a href="/index_admin/"><font size="4" color="white"><b>主页</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/introduction/" target="_parent"><font size="4" color="white"><b>考试简介</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/notice/" target="_parent"><font size="4" color="white"><b>考生须知</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/registerflow/" target="_parent"><font size="4" color="white"><b>报名流程</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/commonproblem/" target="_parent"><font size="4" color="white"><b>常见问题</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/grades/" target="_parent"><font size="4" color="white"><b>成绩报告单</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/testdate/" target="_parent"><font size="4" color="white"><b>考试时间</b></font></a></li>
                 {% else %}
-              <li style="padding: 5px 0 0 120px;" ><a href="/index/"><font size="4" color="black"><b>主页</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/introduction/" target="_parent"><font size="4" color="black"><b>考试简介</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/notice/" target="_parent"><font size="4" color="black"><b>考生须知</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/registerflow/" target="_parent"><font size="4" color="black"><b>报名流程</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/commonproblem/" target="_parent"><font size="4" color="black"><b>常见问题</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/grades/" target="_parent"><font size="4" color="black"><b>成绩报告单</b></font></a></li>
-                <li style="padding: 5px 0 0 30px;"><a href="/testdate/" target="_parent"><font size="4" color="black"><b>考试时间</b></font></a></li>
+              <li style="padding: 5px 0 0 120px;" ><a href="/index/"><font size="4" color="white"><b>主页</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/introduction/" target="_parent"><font size="4" color="white"><b>考试简介</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/notice/" target="_parent"><font size="4" color="white"><b>考生须知</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/registerflow/" target="_parent"><font size="4" color="white"><b>报名流程</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/commonproblem/" target="_parent"><font size="4" color="white"><b>常见问题</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/grades/" target="_parent"><font size="4" color="white"><b>成绩报告单</b></font></a></li>
+                <li style="padding: 5px 0 0 30px;"><a href="/testdate/" target="_parent"><font size="4" color="white"><b>考试时间</b></font></a></li>
             {% endif %}
           </ul>
           <ul class="nav navbar-nav navbar-right">

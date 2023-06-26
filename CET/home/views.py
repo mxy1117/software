@@ -54,7 +54,7 @@ def online_test(request):
         ID = user_da[0].user_id
         user_en = models.user_entry_table.objects.filter(ID_card=ID, status='待考试')
         if user_en:  # 判断是否已考试
-            exam_entry = models.exam_entry_table.objects.get(exam_point=user_en[0].exam_point)
+            exam_entry = models.exam_entry_table.objects.get(exam_point=user_en[0].exam_point,exam_time=user_en[0].exam_time)
         else:
             message = "没有可以参加的考试！"
             return render(request, 'login/index.html', locals())
@@ -221,7 +221,7 @@ def cet_6(request):
                         new_user.ID_card = ID
                         new_user.save()
                         # 考点容量减1,报考人数加1
-                        exam_entry = models.exam_entry_table.objects.get(exam_point=exam_point)
+                        exam_entry = models.exam_entry_table.objects.get(exam_point=exam_point,exam_time=exam_time)
                         exam_entry.number -= 1
                         exam_entry.entry_number += 1
                         exam_entry.save()

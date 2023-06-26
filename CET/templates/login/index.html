@@ -16,15 +16,6 @@
               position :fixed;
               bottom:0;
           }
-          /* #button{
-
-        width:500px;
-
-        height: 500px;
-
-        background-color: rgb(171, 80, 147);
-
-        } */
         </style>
         
         {% if message %}
@@ -34,7 +25,7 @@
         <h1 ><font size="5.2" color="black">你好,{{ request.session.user_name }}！欢迎来到学生界面！</font></h1>
 
 
-    <div style="padding:150px 0 0 1080px;line-height:4em;" class="main_info_l">
+    <div style="padding:120px 0 0 1080px;line-height:4em;" class="main_info_l">
         <button type="button" onclick= "window.location.href='/homepage/cet_6/' "><font size="6" color="black"><b>英语六级报名</b></font></button>
         <button type="button" onclick= "window.location.href='/homepage/my_data/' "><font size="6" color="black"><b>个人信息查询</b></font></button>
         <button type="button" onclick= "window.location.href='/homepage/query_results/' "><font size="6" color="black"><b>报考信息查询</b></font></button>

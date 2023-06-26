@@ -7,12 +7,24 @@
 <head>
 <meta charset="utf-8">
 <title ></title>
+<style>
+	                .a1 {
+            width: 350px;
+            height: 50px;
+            background-color:rgb(226, 232, 232);
+            position: fixed;
+            top: 50px;
+            left: 1100px;
+        }
+</style>
 </head>
 <body onload="examTime()">
 	<div>
 		<p align = "center"><font size="6" color="black"><b>全国大学生英语六级在线考试(2023年6月)</b></font></p>
 		<p align = "center"><span><font size="4.5" color="black">满分100分</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">单选题40分</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">多选题60分</font></span></p>
-		<p align = "center"><span><font size="4.5" color="black">考试时间:&nbsp;&nbsp;60分钟</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">计时:</font></span><span id="time" style="color: red"></span></p>
+		<div class = "a1">
+			<p align = "center"><span><font size="4.5" color="black">考试时间:&nbsp;&nbsp;60分钟</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">计时:</font></span><span id="time" style="color: red"></span></p>
+		</div>
 		<form class='form-register' action="/homepage/answer/" method="post">
 			{% csrf_token %}
 			<div class="form-group">
