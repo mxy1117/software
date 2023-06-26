@@ -2,13 +2,50 @@
 {% block title %}主页{% endblock %}
 {% block content %}
     {% if request.session.is_login %}
+    <style type="text/css">
+        #text {
+              border: solid rgb(18, 17, 17);   /*设置边框样式跟颜色*/
+              margin: 50 auto;   /*设置div居中*/
+              width: 400px;  /*设置div宽度*/
+              height: 450px; /*设置div高度*/
+              border-width: 1px; /*设置边框宽度*/
+              background: rgb(252, 250, 250);  /*设置背景色*/
+          }
+          button:first-child{height: 65px;width: 150px;}
 
+        </style>
         {% if message %}
-            <div class="alert alert-warning">{{ message }}</div>
+            <div class="alert alert-warning" >{{ message }}</div>
         {% endif %}
 
-        <h1>你好,{{ request.session.user_name }}！欢迎来到教师界面！</h1>
+        <h1 class="text-center"><font size="5.2" color="black">你好,{{ request.session.user_name }}！欢迎来到教师界面！</font></h1>
+        
+        <div style="height:30px; clear:both"></div>
+    <div style="margin-right: 5%; margin-left: 60%;">
+  <div id="text">
+      <div class="title_b" style="font-size:17px;">
+          <div style="padding:8px;line-height:1.4em;" class="main_info_l">
+              <h4 align="center"><font size="5.2" color="black">教师阅卷</font></h4>
+              <ul style="margin-top: 0.3em;">
+                  <li><font size="3.5" color="red">CET-6:</font></li>
+                  <li><span><font size="3.5" color="black">此处为教师阅卷系统，听力部分和阅读部分已由机改完成，您需要对考生的写作和翻译部分进行评分</font></span></li>
+                  
+                  <li><font size="3.5" color="red">评分标准：</font></li>
+                  <li><span><font size="3.5" color="black">成绩分为三个档次：</font></span></li>
+                  <li><span><font size="3.5" color="black">30-20分:切题。表达思想清楚，文字通顺、连贯，基本上无语法错误。</font></span></li>
+                  <li><span><font size="3.5" color="black">20-10分:基本切题。有些地方表达思想不够清楚，文字勉强连贯，但有一些语言错误。</font></span></li>
+                  <li><span><font size="3.5" color="black">10分以下:条理不清，思路紊乱，语言支离破碎或大部分句子均有错误，且均为严重错误。</font></span></li>
+              <br>
+                  <li><span><font size="3.5" color="red">注意：</font></span><span><font size="3.5" color="black">阅卷工作应遵循“公平、公正、准确、规范”的原则。必须严格执行标准答案和评分标准，不得提高或降低标准，不得擅自更改答案。</font></span></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>
+        <div style="padding:20px 0 0 1000px;line-height:4em;" class="main_info_l">
+            <button type="button" onclick= "window.location.href='/homepage/grading_choose/' "><font size="4.5" color="black">试卷批改</font></button>
+        </div>
     {% else %}
-    <h1>你尚未登录，只能访问公开内容！</h1>
+    <h1>您尚未登录，只能访问公开内容！</h1>
     {% endif %}
 {% endblock %}

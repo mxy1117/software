@@ -29,6 +29,12 @@ urlpatterns = [
     path('login/', views.login),
     path('register/', views.register),
     path('logout/', views.logout),
+    path('introduction/', views.introduction),
+    path('commonproblem/', views.commonproblem),
+    path('grades/', views.grades),
+    path('notice/', views.notice),
+    path('testdate/', views.testdate),
+    path('registerflow/', views.registerflow),
 
     #使用验证码
     path('captcha', include('captcha.urls')),

@@ -2,45 +2,60 @@
 
 {% block title %}英语六级报名{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="col-md-4 col-md-offset-4">
+<style type="text/css">
+    #sheet {
+          border: solid rgb(18, 17, 17);   /*设置边框样式跟颜色*/
+          margin: 50 auto;   /*设置div居中*/
+          width: 450px;  /*设置div宽度*/
+          height: 650px; /*设置div高度*/
+          border-width: 1px; /*设置边框宽度*/
+          background: rgb(252, 250, 250);  /*设置背景色*/
+      }
+    </style>
+    <div class="container" style="padding:0 0 0 700px;">
+      <div id="sheet" >
+        <div class="col-md-8 col-md-offset-2">
           <form class='form-register' action="/homepage/cet_6/" method="post">
-
               {% if message %}
                   <div class="alert alert-warning">{{ message }}</div>
               {% endif %}
-
               {% csrf_token %}
-
-              <h2 class="text-center">欢迎报名英语六级考试</h2>
-              <p class="text-center">请仔细检查个人信息，确认无误后，填写考点报考！</p>
-              <div class="form-group">
+              <h2 class="text-center"><font size="4.2" color="black"><b>欢迎报名英语六级考试</b></font></h2>
+              <p class="text-center"><font size="3.7" color="black">请仔细检查个人信息，确认无误后，填写考点报考！</font></p>
+              <div class="form-group"><font size="3.7" color="black">
                   {{ cet6_form.user_name.label_tag }}
                   {{ cet6_form.user_name }}
+                </font>
               </div>
-              <div class="form-group">
+              <div class="form-group"><font size="3.7" color="black">
                   {{ cet6_form.email.label_tag }}
                   {{ cet6_form.email }}
+                </font>
               </div>
-              <div class="form-group">
+              <div class="form-group"><font size="3.7" color="black">
                   {{ cet6_form.user_true_name.label_tag }}
                   {{ cet6_form.user_true_name }}
+                </font>
               </div>
-              <div class="form-group">
+              <div class="form-group"><font size="3.7" color="black">
                   {{ cet6_form.user_id.label_tag }}
                   {{ cet6_form.user_id }}
+                </font>
               </div>
-              <div class="form-group">
+              <div class="form-group"><font size="3.7" color="black">
                   {{ cet6_form.exam_point.label_tag }}
                   {{ cet6_form.exam_point }}
+                </font>
               </div>
-              <div class="form-group">
-                  {{ cet6_form.exam_time.label_tag }}
-                  {{ cet6_form.exam_time }}
-              </div>
+              <div class="form-group"><font size="3.7" color="black">
+                {{ cet6_form.exam_time.label_tag }}
+                {{ cet6_form.exam_time }}
+              </font>
+            </div>
               <button type="reset" class="btn btn-default pull-left">取消</button>
               <button type="submit" class="btn btn-primary pull-right">报名</button>
           </form>
+        </div>
         </div>
     </div>
 

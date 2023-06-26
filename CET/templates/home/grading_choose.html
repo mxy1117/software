@@ -1,0 +1,47 @@
+{% extends 'login/base.html' %}
+{% block title %}阅卷系统{% endblock %}
+{% block content %}
+
+<style type="text/css">
+    #text {
+          border: solid rgb(18, 17, 17);   /*设置边框样式跟颜色*/
+          margin: 50 auto;   /*设置div居中*/
+          width: 550px;  /*设置div宽度*/
+          height: 300px; /*设置div高度*/
+          border-width: 1px; /*设置边框宽度*/
+          background: rgb(252, 250, 250);  /*设置背景色*/
+      }
+    </style>
+
+    <div class="container" style="padding:150px 0 0 300px;">
+        <div style="height:30px; clear:both">
+    <div style="margin-right: 5%; margin-left: 40%;">
+  <div id="text">
+        <div class="col-md-8 col-md-offset-2">
+            <h2 class="text-center"><font color="black">欢迎进入阅卷系统！</font></h2>
+            <table class="table">
+                <tr>
+                    <th><font color="black">试卷编号</font></th>
+                    <th><font color="black">考点</font></th>
+                    <th><font color="black">考试时间</font></th>
+                    <th><font color="black">阅卷状态</font></th>
+                </tr>
+                {% for i in papers %}
+                <tr>
+                    <td><font color="black">{{ i.id }}</font></td>
+                    <td><font color="black">{{ i.exam_point }}</font></td>
+                    <td><font color="black">{{ i.exam_time }}</font></td>
+                    <td>
+                        <a href="/homepage/grading?id={{i.id}}">
+                            <input class="btn btn-primary pull-right" type="button" value="阅卷">
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+{% endblock %}

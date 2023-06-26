@@ -1,26 +1,59 @@
 {% extends 'login/base.html' %}
 {% block title %}我的报名信息{% endblock %}
 {% block content %}
-
-    <div class="container">
+<style type="text/css">
+    #sheet {
+          border: solid rgb(18, 17, 17);   /*设置边框样式跟颜色*/
+          margin: 50 auto;   /*设置div居中*/
+          width: 500px;  /*设置div宽度*/
+          height: 300px; /*设置div高度*/
+          border-width: 1px; /*设置边框宽度*/
+          background: rgb(252, 250, 250);  /*设置背景色*/
+      }
+    </style>
+    <form class='form-register' action="/homepage/query_results/" method="post">
+        {% csrf_token %}
+    <div class="container" style="padding:100px 0 0 430px;">
         <div class="col-md-4 col-md-offset-4">
-            <h2 class="text-center">报名信息查询</h2>
-            <p class="text-center">请按时参加考试！</p>
+            <div id="sheet">
+            <h2 class="text-center"><font color="black">报名信息查询</font></h2>
+            <p class="text-center"><font color="red">请按时参加考试！</font></p>
             <table class="table">
                 <tr>
-                    <th>已报名考试</th>
-                    <th>考点</th>
-                    <th>开考时间</th>
-                    <th>缴费情况</th>
+                    <th><font color="black">已报名考试</font></th>
+                    <th><font color="black">考点</font></th>
+                    <th><font color="black">开考时间</font></th>
+                    <th><font color="black">考试状态</font></th>
 <!--                    <th>剩余容量</th>-->
                 </tr>
+                {% for i in user_entry %}
                 <tr>
-                    <td>全国大学生英语六级考试</td>
-                    <td>{{ exam_entry.exam_point }}</td>
-                    <td>{{ exam_entry.exam_time }}</td>
+                    <td><font color="black">CET6</font></td>
+                    <td><font color="black">{{ i.exam_point }}</font></td>
+                    <td><font color="black">{{ i.exam_time }}</font></td>
+                    {% if i.status == '待缴费' %}
+                        <td>
+                            <button name="test_id" value={{i.id}} type="submit" onclick="window.open('https://i.postimg.cc/7YN1g2DG/jiao.jpg')" class="btn btn-primary pull-left">缴费</button>
+                        </td>
+                    {% elif i.status == '待考试' %}
+                        <td>
+                            <button name="test_status" value={{i.status}} type="button" onclick="window.location.href='/homepage/online_test/'" class="btn btn-primary pull-left">考试</button>
+                        </td>
+                    {% elif i.status == '已出分' %}
+                        <td>
+                            <a href="/homepage/query_score?id={{i.id}}">
+                            <input class="btn btn-primary pull-right" type="button" value="查询成绩">
+                        </a>
+                        </td>
+                    {% else %}
+                        <td><font color="black">{{ i.status }}</font></td>
+                    {% endif %}
 <!--                    <td>{{ exam_entry4.number }}</td>-->
                 </tr>
+                {% endfor %}
             </table>
         </div>
+        </div>
     </div>
+</form>
 {% endblock %}

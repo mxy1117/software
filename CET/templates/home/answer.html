@@ -1,36 +1,32 @@
-{% extends 'login/base.html' %}
-{% block title %}考试界面{% endblock %}
+{% load static %}
+{% block title %}{% endblock %}
 {% block content %}
 
-<!-- <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>考试界面</title>
+<title ></title>
 </head>
 <body onload="examTime()">
 	<div>
-		<span>满分100分</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>单选题40分</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>多选题60分</span><br />
-		<span>考试时间:&nbsp;&nbsp;60分钟</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>计时:</span><span
-			id="time" style="color: red"></span>
-		<form action="ExamServlet" method="post" name="exam">
+		<p align = "center"><font size="6" color="black"><b>全国大学生英语六级在线考试(2023年6月)</b></font></p>
+		<p align = "center"><span><font size="4.5" color="black">满分100分</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">单选题40分</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">多选题60分</font></span></p>
+		<p align = "center"><span><font size="4.5" color="black">考试时间:&nbsp;&nbsp;60分钟</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">计时:</font></span><span id="time" style="color: red"></span></p>
+		<form class='form-register' action="/homepage/answer/" method="post">
+			{% csrf_token %}
 			<div class="form-group">
-                <h2 class="col-md-4 text-left"><span>Part I</span></h2>
-                <h2 class="col-md-4 text-center"><span>Writing</span></h2>
-				<h2 class="col-md-4 text-right"><span>(30 minutes)</span></h2>
+				<p align = "left"><b><span><font size="4.5" color="black">Part I</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">Writing</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">(30 minutes)</font></span></b></p>
             </div>
 			<br/>
-			<p>{{ paper.writing }}</p>
+			<p><b>Directions: </b>{{ paper.writing }}</p>
 			<br />
 			<p>
-                &emsp;&emsp;<textarea name="textarea" cols="180" rows="20"></textarea>
+                &emsp;&emsp;<textarea name="writing_ans" cols="180" rows="20">{{ userans.writing_ans }}</textarea>
             </p>
 			<br />
 			<div class="form-group">
-                <h2 class="col-md-4 text-left"><span>Part II</span></h2>
-                <h2 class="col-md-4 text-center"><span>Listening Comprehension</span></h2>
-				<h2 class="col-md-4 text-right"><span>(30 minutes)</span></h2>
+				<p align = "left"><b><span><font size="4.5" color="black">Part II</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">Listening Comprehension</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">(30 minutes)</font></span></b></p>
             </div>
 			<p><strong>Directions:</strong> In this section, you will hear two long conversations. At the end of each conversation,
 				you will hear four questions. Both the conversation and the questions will be spoken only once.
@@ -39,17 +35,15 @@
 			<br />
 			{% for i in listenings %}
 			<strong>Question {{i.id}}:</strong> <br /> <input
-				type="radio" name="one" value="A" />&ensp;A&emsp;{{i.A}} <br /> <input
-				type="radio" name="one" value="B" />&ensp;B&emsp;{{i.B}} <br /> <input
-				type="radio" name="one" value="C" />&ensp;C&emsp;{{i.C}} <br /> <input
-				type="radio" name="one" value="D" />&ensp;D&emsp;{{i.D}} <br />
+				type="radio" name=Q{{i.id}} value="A" />&ensp;A&emsp;{{i.A}} <br /> <input
+				type="radio" name=Q{{i.id}} value="B" />&ensp;B&emsp;{{i.B}} <br /> <input
+				type="radio" name=Q{{i.id}} value="C" />&ensp;C&emsp;{{i.C}} <br /> <input
+				type="radio" name=Q{{i.id}} value="D" />&ensp;D&emsp;{{i.D}} <br />
 			<br />
 			{% endfor %}
 
 			<div class="form-group">
-                <h2 class="col-md-4 text-left"><span>Part III</span></h2>
-                <h2 class="col-md-4 text-center"><span>Reading Comprehension</span></h2>
-				<h2 class="col-md-4 text-right"><span>(40 minutes)</span></h2>
+				<p align = "left"><b><span><font size="4.5" color="black">Part III</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">Reading Comprehension</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">(40 minutes)</font></span></b></p>
             </div>
 			<p><strong>Directions:</strong>There are 2 passages in this section. Each passage is followed by some questions or
 				unfinished statements. For each of them there are four choices marked A), B), C) and D). You should decide on
@@ -60,17 +54,15 @@
 			<br/>
 			{% for i in readings %}
 			<strong>Question {{i.id}}:</strong> {{i.qu}}<br /> <input
-				type="radio" name="one" value="A" />&ensp;A&emsp;{{i.A}} <br /> <input
-				type="radio" name="one" value="B" />&ensp;B&emsp;{{i.B}} <br /> <input
-				type="radio" name="one" value="C" />&ensp;C&emsp;{{i.C}} <br /> <input
-				type="radio" name="one" value="D" />&ensp;D&emsp;{{i.D}} <br />
+				type="radio" name=Q{{i.id}} value="A" />&ensp;A&emsp;{{i.A}} <br /> <input
+				type="radio" name=Q{{i.id}} value="B" />&ensp;B&emsp;{{i.B}} <br /> <input
+				type="radio" name=Q{{i.id}} value="C" />&ensp;C&emsp;{{i.C}} <br /> <input
+				type="radio" name=Q{{i.id}} value="D" />&ensp;D&emsp;{{i.D}} <br />
 			<br />
 			{% endfor %}
 
 			<div class="form-group">
-                <h2 class="col-md-4 text-left"><span>Part IV</span></h2>
-                <h2 class="col-md-4 text-center"><span>Translation</span></h2>
-				<h2 class="col-md-4 text-right"><span>(30 minutes)</span></h2>
+				<p align = "left"><b><span><font size="4.5" color="black">Part IV</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">Translation</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">(30 minutes)</font></span></b></p>
             </div>
 			<br />
 			<p><strong>Directions:</strong> Directions: For this part, you are allowed 30 minutes to translate a
@@ -79,12 +71,12 @@
 			<p>{{ paper.translation }}</p>
 			<br />
 			<p>
-                &emsp;&emsp;<textarea name="textarea" cols="180" rows="20"></textarea>
+                &emsp;&emsp;<textarea name="translation_ans" cols="180" rows="20">{{ userans.translation_ans }}</textarea>
             </p>
             <!--  文件域-->
             <p>
-				<input type="submit" value="交卷" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-					id="a" href="/index/">退出当前系统</a>
+				<button type="submit" onclick="alert('您已交卷，考试结束！')" class="btn btn-default pull-left">交卷</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a id="a" href="/index/">退出当前系统</a>
 			</p>
 		</form>
 	</div>

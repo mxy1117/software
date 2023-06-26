@@ -2,13 +2,27 @@
 {% block title %}主页{% endblock %}
 {% block content %}
     {% if request.session.is_login %}
+    <style type="text/css">
+        #text {
+              border: solid rgb(18, 17, 17);   /*设置边框样式跟颜色*/
+              margin: 50 auto;   /*设置div居中*/
+              width: 400px;  /*设置div宽度*/
+              height: 450px; /*设置div高度*/
+              border-width: 1px; /*设置边框宽度*/
+              background: rgb(252, 250, 250);  /*设置背景色*/
+          }
+          button:first-child{height: 75px;width: 200px;}
+        </style>
 
         {% if message %}
             <div class="alert alert-warning">{{ message }}</div>
         {% endif %}
 
-        <h1>你好,{{ request.session.user_name }}！欢迎回来管理员界面！</h1>
+        <h1 class="text-center"><font size="5.2" color="black">你好,{{ request.session.user_name }}！欢迎来到管理员界面！</font></h1>
+        <div style="padding:30px 0 0 650px;line-height:4em;" class="main_info_l">
+            <button type="button" onclick= "window.location.href='/homepage/arrange_exam/' "><font size="4.5" color="black">CET-6考点安排</font></button>
+        </div>
     {% else %}
-    <h1>你尚未登录，只能访问公开内容！</h1>
+    <h1>您尚未登录，只能访问公开内容！</h1>
     {% endif %}
 {% endblock %}

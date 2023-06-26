@@ -1,0 +1,33 @@
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <h2 class="text-center" align = "center"><font size="6" color="black"><b>欢迎进入阅卷系统！</b></h2>
+        <form class='form-register' action="/homepage/grading/" method="post">
+        {% csrf_token %}
+            <span>试卷编号:&nbsp;&nbsp;<input type="text" name="id" value={{id}} readonly="readonly" size="1"></span>
+            <div class="form-group">
+                <p align = "left"><b><span><font size="4.5" color="black">Writing</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">(50 points)</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">scores&nbsp;<input type="text" name="writing_score" size="5" value={{scores.writing_score}}></font></span></b></p>
+                
+            </div>
+            <br/>
+            <p>
+                &emsp;<textarea name="writing_ans" cols="180" rows="10" readonly="readonly">{{ answer_sheet.wri_ans }}</textarea>
+            </p>
+            <br/>
+            <div class="form-group">
+                <p align = "left"><b><span><font size="4.5" color="black">Translation</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">(50 points)</font></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><font size="4.5" color="black">scores&nbsp;<input type="text" name="translation_score" size="5" value={{scores.translation_score}}></font></span></b></p>
+            </div>
+            <br/>
+            <p>
+                &emsp;<textarea name="translation_ans" cols="180" rows="10" readonly="readonly">{{ answer_sheet.tran_ans }}</textarea>
+            </p>
+            <br/>
+            <p>
+				<button type="submit" onclick="alert('您已提交，阅卷完成！') " class="btn btn-primary pull-left">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a id="a" href="/index_teacher/">退出当前系统</a>
+			</p>
+        </form>
+    </div>
+{% endblock %}

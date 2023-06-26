@@ -1,0 +1,43 @@
+{% extends 'login/base.html' %}
+{% block title %}我的报名信息{% endblock %}
+{% block content %}
+<style type="text/css">
+    #sheet {
+          border: solid rgb(18, 17, 17);   /*设置边框样式跟颜色*/
+          margin: 50 auto;   /*设置div居中*/
+          width: 400px;  /*设置div宽度*/
+          height: 250px; /*设置div高度*/
+          border-width: 1px; /*设置边框宽度*/
+          background: rgb(252, 250, 250);  /*设置背景色*/
+      }
+    </style>
+   
+    <div class="container" style="padding:200px 0 0 750px;">
+        <div id = "sheet">
+        <div class="col-md-8 col-md-offset-2">
+            <h2 class="text-center"><font color="purple">CET-6成绩查询</h2></font>
+            <table class="table">
+                <tr>
+                    <th><font color="black">考试编号</font></th>
+                    <th><font color="black">听力</font></th>
+                    <th><font color="black">阅读</font></th>
+                    <th><font color="black">作文</font></th>
+                    <th><font color="black">总分</font></th>
+<!--                    <th>剩余容量</th>-->
+                </tr>
+                <tr>
+                    <td><font color="black">{{ score.id }}</font></td>
+                    <td><font color="black">{{ score.listening }}</font></td>
+                    <td><font color="black">{{ score.reading }}</font></td>
+                    <td><font color="black">{{ score.writing }}</font></td>
+                    <td><font color="black">{{ score.total }}</font></td>
+<!--                    <td>{{ exam_entry4.number }}</td>-->
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    </div>
+
+
+{% endblock %}

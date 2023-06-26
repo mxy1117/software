@@ -1,58 +1,64 @@
 {% extends 'login/base.html' %}
 {% block title %}考试界面{% endblock %}
 {% block content %}
-
-    <div class="container">
-        <div class="col-md-4 col-md-offset-4">
-            <h1 class="text-center">考试须知</h1>
-            <h4 class="text-lift">请仔细核对以下考试信息，确认无误后，点击”开始考试“</h4>
-            <div class="form-group">
-                <div class="col-md-4 text-left"><span>考生姓名:</span></div>
-                <div class="col-md-8 text-right">{{ user.user_true_name }}</div>
+<style type="text/css">
+    #sheet {
+          border: solid rgb(18, 17, 17);   /*设置边框样式跟颜色*/
+          margin: 50 auto;   /*设置div居中*/
+          width: 450px;  /*设置div宽度*/
+          height: 610px; /*设置div高度*/
+          border-width: 1px; /*设置边框宽度*/
+          background: rgb(252, 250, 250);  /*设置背景色*/
+      }
+    </style>
+    <div class="container" style="padding:0 0 0 730px;">
+        <div id="sheet" >
+        <div class="col-md-8 col-md-offset-2">
+            <form class='form-register' action="/homepage/online_test/" method="post">
+                {% if message %}
+                <div class="alert alert-warning">{{ message }}</div>
+            {% endif %}
+            <h1 class="text-center"><font size="5.2" color="red"><b>考试须知</b></font></h1>
+            <p class="text-center"><font size="4.2" color="black">请仔细核对以下考试信息，确认无误后，点击"开始考试"</font></p>
+            <div class="form-group"><font size="4.2" color="black">
+                考生姓名:    {{ user.user_true_name }}
             </div>
-            <div class="form-group">
-                <div class="col-md-4 text-left"><span>身份证号:</span></div>
-                <div class="col-md-8 text-right">{{ user.user_id }}</div>
+            <div class="form-group"><font size="4.2" color="black">
+                身份证号:    {{ user.user_id }}
             </div>
-            <div class="form-group">
-                <div class="col-md-4 text-left"><span>所在学校:</span></div>
-                <div class="col-md-8 text-right">{{ user.user_school }}</div>
+            <div class="form-group"><font size="4.2" color="black">
+                所在学校:    {{ user.user_school }}</font>
             </div>
-            <div class="form-group">
-                <div class="col-md-4 text-left"><span>考场:</span></div>
-                <div class="col-md-8 text-right">{{ exam_entry.exam_point }}</div>
+            <div class="form-group"><font size="4.2" color="black">
+                考场:    {{ exam_entry.exam_point }}</font>
             </div>
-            <div class="form-group">
-                <div class="col-md-4 text-left"><span>考试时间:</span></div>
-                <div class="col-md-8 text-right">{{ exam_entry.exam_time }}</div>
+            <div class="form-group"><font size="4.2" color="black">
+                考试时间:    {{ exam_entry.exam_time }}</font>
             </div>
-            <h4 class="text-lift">考试流程</h4>
-            <div class="form-group">
-                <div class="col-md-8 text-left"><span>考试时长:</span></div>
-                <div class="col-md-4 text-right"><span>125 min</span></div>
+            <h4 class="text-lift"><font size="4.2" color="black"><b>考试流程</b></font></h4>
+            <div class="form-group"><font size="4.2" color="black">
+                考试时长:    125 min</font>
             </div>
-            <div class="form-group">
-                <div class="col-md-8 text-left"><span>1. 听力试音：</span></div>
-                <div class="col-md-4 text-right"><span>5 min</span></div>
+            <div class="form-group"><font size="4.2" color="black">
+                1. 听力试音：    5 min</font>
             </div>
-            <div class="form-group">
-                <div class="col-md-8 text-left"><span>2. 作文考试阶段：</span></div>
-                <div class="col-md-4 text-right"><span>30 min</span></div>
+            <div class="form-group"><font size="4.2" color="black">
+                2. 作文考试阶段：    30 min</font>
             </div>
-            <div class="form-group">
-                <div class="col-md-8 text-left"><span>3. 听力考试阶段：</span></div>
-                <div class="col-md-4 text-right"><span>30 min</span></div>
+            <div class="form-group"><font size="4.2" color="black">
+                3. 听力考试阶段：   30 min</font>
             </div>
-            <div class="form-group">
-                <div class="col-md-8 text-left"><span>4. 阅读和翻译考试阶段：</span></div>
-                <div class="col-md-4 text-right"><span> 60min</span></div>
+            <div class="form-group"><font size="4.2" color="black">
+                4. 阅读和翻译考试阶段：    60min</font>
             </div>
             <div class="col-md-8 text-right">
                   <a href="/homepage/answer/">
                       <input name="answer" class="btn btn-primary pull-right" type="button" value="开始考试">
                   </a>
               </div>
+            </form>
         </div>
+    </div>
     </div>
 
 

@@ -22,8 +22,16 @@ class exam_entry_table(models.Model):
 
 class user_entry_table(models.Model):
     # 用户考试信息表
+    status_type = (
+        ('enrolled', '待缴费'),
+        ('payed', '待考试'),
+        ('examed', '待批改'),
+        ('corrected', '已出分'),
+    )
+    status = models.CharField(verbose_name="考试状态", max_length=32, choices=status_type, default='待缴费')
     email = models.EmailField(verbose_name="邮箱")
     ID_card = models.CharField(verbose_name="身份证号", max_length=18, default=' ')
+    # status = models.CharField()
     # exam_id = models.CharField(verbose_name="考试编号",max_length=10)
     exam_time = models.CharField(verbose_name="考试时间",max_length=128, default=' ')
     exam_point = models.CharField(verbose_name="考点",max_length=128)
@@ -31,6 +39,8 @@ class user_entry_table(models.Model):
     listening = models.IntegerField(verbose_name="听力", default=0)
     reading = models.IntegerField(verbose_name="阅读", default=0)
     total = models.IntegerField(verbose_name="总分", default=0)
+    wri_ans = models.TextField(verbose_name="作文答案", default=' ')
+    tran_ans = models.TextField(verbose_name="翻译答案", default=' ')
 
     def __str__(self):
         return self.email
