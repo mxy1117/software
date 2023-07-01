@@ -40,10 +40,14 @@ INSTALLED_APPS = [
     'login',
     'captcha',
     'home',
+    "debug_toolbar",
+    # 'silk',
 ]
 
 
 MIDDLEWARE = [
+    # 'silk.middleware.SilkyMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,7 +55,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_cprofile_middleware.middleware.ProfilerMiddleware',
 ]
+
+INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'CET.urls'
 
@@ -86,11 +93,11 @@ WSGI_APPLICATION = 'CET.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'software',  #数据库名字
-        'USER':'root',    #登陆数据库的用户名
-        'PASSWORD':'123456',  #登陆数据库的密码
-        'HOST':'localhost',   #数据库的ip地址
-        'PORT':'3306',        #ip地址的端口号，默认（3306）
+        'NAME': 'test',  # 数据库名字
+        'USER': 'root',    # 登陆数据库的用户名
+        'PASSWORD': 'root',  # 登陆数据库的密码
+        'HOST': 'localhost',   # 数据库的ip地址
+        'PORT': '3306',        # ip地址的端口号，默认（3306）
     }
 }
 
@@ -131,7 +138,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+# 使用Python的内置cProfile分析器
+SILKY_PYTHON_PROFILER = True
+# 生成.prof文件，silk产生的程序跟踪记录，详细记录来执行来哪个文件，哪一行，用了多少时间等信息
+SILKY_PYTHON_PROFILER_BINARY = True
+# .prof文件保存路径（最好不要像我这样设置在项目目录中）
+# 如果没有本设置，prof文件将默认保存在MEDIA_ROOT里
+SILKY_PYTHON_PROFILER_RESULT_PATH = os.path.join(BASE_DIR, 'logs')
+
+DJANGO_CPROFILE_MIDDLEWARE_REQUIRE_STAFF = False
+
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]

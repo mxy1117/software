@@ -18,10 +18,10 @@ from django.urls import path,include
 from login import views
 
 urlpatterns = [
-    path('', views.index),              #修改端口默认主页
-    path('admin/', admin.site.urls),    #管理员端
+    path('', views.index),              # 修改端口默认主页
+    path('admin/', admin.site.urls),    # 管理员端
 
-    #登录注册
+    # 登录注册
     path('index/', views.index),
     path('index_teacher/', views.index_teacher),
     path('index_admin/', views.index_admin),
@@ -36,9 +36,15 @@ urlpatterns = [
     path('testdate/', views.testdate),
     path('registerflow/', views.registerflow),
 
-    #使用验证码
+    # 使用验证码
     path('captcha', include('captcha.urls')),
 
-    #报名app路由
+    # 报名app路由
     path('homepage/',include('home.urls')),
+
+    # 功能测试
+    # path('silk/', include('silk.urls', namespace='silk')),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
+
+# urlpatterns += [url(r'^silk/', include('silk.urls', namespace='silk'))]

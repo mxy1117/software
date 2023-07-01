@@ -154,12 +154,9 @@ def query(request):
             user_entry = models.user_entry_table.objects.get(id=test_id)
             user_entry.status = '待考试'
             user_entry.save()
-            # print(u_query['test_status'])
     if user_en:
-        # print(len(user_en))
-        # if len(user_en)==1:
-        user_entry = models.user_entry_table.objects.filter(email=user.email)
-        return render(request, 'home/query1.html', {"user_entry": user_entry})
+        # user_entry = models.user_entry_table.objects.filter(email=user.email)
+        return render(request, 'home/query1.html', {"user_entry": user_en})
     else:
         message = "你还未报名！请先报名之后再来查看！"
         return render(request, 'login/index.html', locals())
@@ -171,6 +168,14 @@ def cet_6(request):
     # 用户信息表,用户表，获取信息判断资格
     user_da = models.user_data.objects.get(user_name=username)
     user = User.objects.get(name=username)
+    # 判断个人信息是否完整
+    if user_da.user_true_name == '无' or user_da.user_id == '无':
+        message = "请先完善个人真实信息之后再来报名！"
+        return render(request, 'login/index.html', locals())
+    # 判断是否通过四级考试
+    if user_da.user_f_score == '未通过':
+        message = "通过四级才能报名六级考试！"
+        return render(request, 'login/index.html', locals())
     if request.method == "POST":
         cet6_form = user_entry(request.POST)
         if cet6_form.is_valid():
@@ -186,12 +191,8 @@ def cet_6(request):
             time = models.exam_entry_table.objects.filter(exam_time=exam_time)
             # 用与下面的是否重复报名判断
             entryer = models.user_entry_table.objects.filter(email=user.email)
-            # 判断个人信息是否完善
-            if user_da.user_true_name=='无'or user_da.user_id=='无':
-                message="请先完善个人真实信息之后再来报名！"
-                return render(request, 'home/cet_6.html', locals())
             # 判断考点是否存在
-            elif point:
+            if point:
                 # 考点存在
                 if time:
                     # 考试时间正确
@@ -200,35 +201,31 @@ def cet_6(request):
                         flag = 0
                         for i in entryer:
                             if i.status != '已出分':
+                                print("status")
+                                print(i)
                                 flag = 1
                                 break
                             if i.exam_time == exam_time:
+                                print("time")
                                 flag = 1
                                 break
                         if flag:
                             message = "请勿重复报名！"
                             return render(request, 'home/cet_6.html', locals())
-                    # 判断四级成绩是否合格
-                    if f_score == "通过":
-                        # print("报名成功！请按时参加考试！")
-                        # 创建一条数据
-                        message = "报名成功！请按时参加考试！"
-                        new_user = models.user_entry_table.objects.create()
-                        new_user.email = user.email
-                        # new_user.exam_id = exam_id
-                        new_user.exam_point = exam_point
-                        new_user.exam_time = exam_time
-                        new_user.ID_card = ID
-                        new_user.save()
-                        # 考点容量减1,报考人数加1
-                        exam_entry = models.exam_entry_table.objects.get(exam_point=exam_point,exam_time=exam_time)
-                        exam_entry.number -= 1
-                        exam_entry.entry_number += 1
-                        exam_entry.save()
-                        return render(request, 'home/cet_6.html', locals())
-                    else:
-                        message = "通过四级才能报名六级考试！"
-                        return render(request, 'home/cet_6.html', locals())
+                    message = "报名成功！请按时参加考试！"
+                    new_user = models.user_entry_table.objects.create(email=user.email, exam_point=exam_point, exam_time=exam_time, ID_card=ID)
+                    # new_user.email = user.email
+                    # new_user.exam_id = exam_id
+                    # new_user.exam_point = exam_point
+                    # new_user.exam_time = exam_time
+                    # new_user.ID_card = ID
+                    # new_user.save()
+                    # 考点容量减1,报考人数加1
+                    exam_entry = models.exam_entry_table.objects.get(exam_point=exam_point, exam_time=exam_time)
+                    exam_entry.number -= 1
+                    exam_entry.entry_number += 1
+                    exam_entry.save()
+                    return render(request, 'home/cet_6.html', locals())
                 else:
                     message = "该时间段没有符合条件的考试场次！详情请咨询学校相关部门！"
                     return render(request, 'home/cet_6.html', locals())
@@ -265,13 +262,12 @@ def arrange(request):
                 # 创建一条数据
                 message = "考点添加成功！"
 
-                new_exam = models.exam_entry_table.objects.create(number=number_temp)
-                new_exam.exam_point = exam_point
-                new_exam.exam_time = exam_time
-                # new_exam.number = number_temp
-                # 报考人数初始为0
-                new_exam.entry_number = 0
-                new_exam.save()
+                new_exam = models.exam_entry_table.objects.create(number=number_temp,exam_point=exam_point,exam_time=exam_time,entry_number=0)
+                # new_exam.exam_point = exam_point
+                # new_exam.exam_time = exam_time
+                # # 报考人数初始为0
+                # new_exam.entry_number = 0
+                # new_exam.save()
                 # return HttpResponse("添加成功！")
                 return render(request, 'home/arrange_exam.html', {"exam_entry": exam_entry,"message": message})
         return HttpResponse("error！")
